@@ -4,7 +4,7 @@ using System.Collections;
 public class paintballGun : MonoBehaviour {
 
     public GameObject paintball;
-    public GameObject gunModel;
+	public GameObject gunModel;
 
 	// Use this for initialization
 	void Start () {
