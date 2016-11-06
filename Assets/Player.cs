@@ -2,35 +2,44 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
-	public Rigidbody rigidbody;
-	public float speed = 5.0f;
-	// Use this for initialization
-	void Start () {
-	
+
+
+
+	public float cameraSensitivity = 90;
+	public float normalMoveSpeed = 10;
+	public float slowMoveFactor = 0.25f;
+
+	private float rotationX = 0.0f;
+	private float rotationY = 0.0f;
+
+	void Start ()
+	{
+		Screen.lockCursor = true;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		bool getLeft = Input.GetKey (KeyCode.A);
-		bool getRight = Input.GetKey (KeyCode.D);
-		bool getFoward = Input.GetKey (KeyCode.W);
-		bool getBack = Input.GetKey (KeyCode.S);
 
-		Vector3 currentPosition = transform.position;
+	void Update ()
+	{
+		rotationX += Input.GetAxis("Mouse X") * cameraSensitivity * Time.deltaTime;
+		rotationY += Input.GetAxis("Mouse Y") * cameraSensitivity * Time.deltaTime;
+		rotationY = Mathf.Clamp (rotationY, -90, 90);
 
-		if(getLeft) {
-			currentPosition.x -= speed * Time.deltaTime;
+		transform.localRotation = Quaternion.AngleAxis(rotationX, Vector3.up);
+		transform.localRotation *= Quaternion.AngleAxis(rotationY, Vector3.left);
+
+		if (Input.GetKey (KeyCode.LeftControl) || Input.GetKey (KeyCode.RightControl))
+		{
+			transform.position += transform.forward * (normalMoveSpeed * slowMoveFactor) * Input.GetAxis("Vertical") * Time.deltaTime;
+			transform.position += transform.right * (normalMoveSpeed * slowMoveFactor) * Input.GetAxis("Horizontal") * Time.deltaTime;
 		}
-		else if(getRight){
-			currentPosition.x += speed * Time.deltaTime;
+		else
+		{
+			transform.position += transform.forward * normalMoveSpeed * Input.GetAxis("Vertical") * Time.deltaTime;
+			transform.position += transform.right * normalMoveSpeed * Input.GetAxis("Horizontal") * Time.deltaTime;
+		}
+
+		if (Input.GetKeyDown (KeyCode.End))
+		{
+			Screen.lockCursor = (Screen.lockCursor == false) ? true : false;
+		}
 	}
-		if (getFoward) {
-			currentPosition.z += speed * Time.deltaTime;
-		}
-		else if (getBack) {
-			currentPosition.z -= speed * Time.deltaTime;
-		}
-
-		transform.position =currentPosition;
-}
 }
