@@ -4,7 +4,7 @@ using System.Collections;
 public class Room : MonoBehaviour {
 	int min = -50;
 	int max =50;
-	float timeLeft=30f;
+	float timeLeft=60f;
 	GUIStyle style;
 	public int score;
 
@@ -14,7 +14,7 @@ public class Room : MonoBehaviour {
 
 	void Start () {
 		style = new GUIStyle();
-		style.fontSize=20;
+		style.fontSize=30;
 		score = 0;
 
 		initTargets ();
@@ -32,8 +32,8 @@ public class Room : MonoBehaviour {
 
 	void OnGUI(){
 		GUI.color = Color.white;
-		GUI.Label (new Rect (5, 5, 200, 200), timeLeft.ToString ("F0"), style);
-		GUI.Label (new Rect (Screen.width - 200, 5, 200, 200), score.ToString(), style); 
+		GUI.Label (new Rect (40, 5, 200, 200), "Time: "+timeLeft.ToString ("F0"), style);
+		GUI.Label (new Rect (Screen.width - 150, 5, 200, 200), "Score: "+score.ToString(), style); 
 		GUI.Label(new Rect(Screen.width/2-5, Screen.height/2-5,10,10), "+",style);
 	}
 
@@ -51,7 +51,7 @@ public class Room : MonoBehaviour {
 
 	void initTrees()
 	{
-		for (int i = 1; i < 10; i++) {
+		for (int i = 0; i < 10; i++) {
 			float x = Random.Range (min, max);
 			float z = Random.Range (min, max);
 
