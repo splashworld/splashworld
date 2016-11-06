@@ -6,6 +6,7 @@ public class Room : MonoBehaviour {
 	int max =50;
 	float timeLeft=60f;
 	GUIStyle style;
+	GUIStyle style2;
 	public int score;
 
 
@@ -16,6 +17,9 @@ public class Room : MonoBehaviour {
 		style = new GUIStyle();
 		style.fontSize=30;
 		score = 0;
+
+		style2 = new GUIStyle ();
+		style2.fontSize = 100;
 
 		initTargets ();
 		initTrees ();
@@ -35,6 +39,11 @@ public class Room : MonoBehaviour {
 		GUI.Label (new Rect (40, 5, 200, 200), "Time: "+timeLeft.ToString ("F0"), style);
 		GUI.Label (new Rect (Screen.width - 150, 5, 200, 200), "Score: "+score.ToString(), style); 
 		GUI.Label(new Rect(Screen.width/2-5, Screen.height/2-5,10,10), "+",style);
+
+		if (timeLeft <= 0) {
+			GUI.Label (new Rect (Screen.width / 2 - 250, Screen.height / 2 - 50, 10, 10), "Game Over!", style2);
+		}
+			
 	}
 
 	void initTargets()
