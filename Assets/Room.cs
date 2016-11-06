@@ -5,30 +5,38 @@ using UnityEngine.SceneManagement;
 public class Room : MonoBehaviour {
 	int min = -50;
 	int max =50;
-	const float totalTime = 3f;
+	const float totalTime = 60f;
 	float timeLeft;
 	GUIStyle style;
 	GUIStyle style2;
+	GUIStyle style3;
 	public int score;
 
 	private bool go;
-
+	int highscore;
 
 	public GameObject target1;
 	public GameObject tree;
 
 
 	void Start () {
+		highscore = PlayerPrefs.GetInt("High Score");
+
 		Time.timeScale = 1;
 		timeLeft = totalTime;
 
 		style = new GUIStyle();
-		style.fontSize=30;
+		style.fontSize = 30;
 		score = 0;
 		go = false;
 
 		style2 = new GUIStyle ();
 		style2.fontSize = 100;
+		style2.alignment = TextAnchor.UpperCenter;
+
+		style3 = new GUIStyle();
+		style3.fontSize = 30;
+		style3.alignment = TextAnchor.UpperCenter;
 
 		initTargets ();
 		initTrees ();
@@ -54,16 +62,18 @@ public class Room : MonoBehaviour {
 		GUI.color = Color.white;
 		GUI.Label (new Rect (40, 5, 200, 200), "Time: "+timeLeft.ToString ("F0"), style);
 		GUI.Label (new Rect (Screen.width - 150, 5, 200, 200), "Score: "+score.ToString(), style); 
-		GUI.Label(new Rect(Screen.width/2-5, Screen.height/2-5,10,10), "+",style);
+		GUI.Label(new Rect(Screen.width/2, Screen.height/2,10,10), "+",style3);
 
 		if (timeLeft == totalTime) {
-			GUI.Label (new Rect (50, Screen.height / 2 - 50, 10, 10), "Shoot apples and floating cubes. Beware of trees.", style2);
+			GUI.Label (new Rect (Screen.width/2, Screen.height / 3, 10, 10), "Use space to shoot and WASD to move\nAim for apples and floating cubes\nBeware of trees\nShoot to start", style2);
 		}
 
 		if (timeLeft <= 0) {
-			GUI.Label (new Rect (Screen.width / 2 - 250, Screen.height / 2 - 50, 10, 10), "Game Over!", style2);
-			GUI.Label (new Rect (Screen.width / 4 + 100, Screen.height / 2+50, 10, 10), "Press Return to restart", style2);
-			GUI.Label (new Rect (Screen.width / 3 -30, Screen.height / 2+150, 10, 10), "Press Escape to quit", style2);
+			if (score > highscore) {
+				highscore = score;
+				PlayerPrefs.SetInt ("High Score", (int)highscore);
+			}
+			GUI.Box (new Rect (Screen.width / 2, Screen.height / 4, 10, 10), "Game Over!\n"+"Your Score: "+score+"\nHigh Score: "+highscore+"\nPress Return to restart\nPress Escape to quit", style2);
 			if (Input.GetKeyUp(KeyCode.Return)) {
 				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 			}
