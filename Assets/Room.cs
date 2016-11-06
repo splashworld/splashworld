@@ -32,7 +32,7 @@ public class Room : MonoBehaviour {
 		go = false;
 
 		style2 = new GUIStyle ();
-		style2.fontSize = 80;
+		style2.fontSize = 50;
 		style2.alignment = TextAnchor.UpperCenter;
 
 		style3 = new GUIStyle();
@@ -40,7 +40,7 @@ public class Room : MonoBehaviour {
 		style3.alignment = TextAnchor.UpperCenter;
 
 		style4 = new GUIStyle();
-		style4.fontSize = 160;
+		style4.fontSize = 50;
 		style4.alignment = TextAnchor.UpperCenter;
 
 		initTargets ();
@@ -79,7 +79,7 @@ public class Room : MonoBehaviour {
 				highscore = score;
 				PlayerPrefs.SetInt ("High Score", (int)highscore);
 			}
-			GUI.Box (new Rect (Screen.width / 2, Screen.height / 4, 10, 10), "Game Over!\n"+"Your Score: "+score+"\nHigh Score: "+highscore+"\nPress Return to restart\nPress Escape to quit", style2);
+			GUI.Box (new Rect (Screen.width / 2, Screen.height / 4, 10, 10), "Game Over!\n"+"Your Score: "+score+"\nHigh Score: "+highscore+"\nPress Return to restart", style2);
 			if (Input.GetKeyUp(KeyCode.Return)) {
 				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 			}
