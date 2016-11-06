@@ -10,6 +10,7 @@ public class Room : MonoBehaviour {
 	GUIStyle style;
 	GUIStyle style2;
 	GUIStyle style3;
+	GUIStyle style4;
 	public int score;
 
 	private bool go;
@@ -38,6 +39,10 @@ public class Room : MonoBehaviour {
 		style3.fontSize = 30;
 		style3.alignment = TextAnchor.UpperCenter;
 
+		style4 = new GUIStyle();
+		style4.fontSize = 200;
+		style4.alignment = TextAnchor.UpperCenter;
+
 		initTargets ();
 		initTrees ();
 	}
@@ -65,7 +70,8 @@ public class Room : MonoBehaviour {
 		GUI.Label(new Rect(Screen.width/2, Screen.height/2,10,10), "+",style3);
 
 		if (timeLeft == totalTime) {
-			GUI.Label (new Rect (Screen.width/2, Screen.height / 3, 10, 10), "Use space to shoot and WASD to move\nAim for apples and floating cubes\nBeware of trees\nShoot to start", style2);
+			GUI.Label (new Rect (Screen.width/2, Screen.height/6, 100, 50), "<color=blue>S</color><color=magenta>P</color><color=blue>L</color><color=magenta>A</color><color=blue>T</color><color=magenta>T</color><color=blue>E</color><color=magenta>R</color> <color=blue>W</color><color=magenta>O</color><color=blue>R</color><color=magenta>L</color><color=blue>D</color>", style4);
+			GUI.Label (new Rect (Screen.width/2, Screen.height / 3, 10, 10), "Use space to shoot and WASD to move\nAim for fruit and floating cubes\nBeware of trees\nShoot to start", style2);
 		}
 
 		if (timeLeft <= 0) {
