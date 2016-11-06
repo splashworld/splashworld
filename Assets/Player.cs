@@ -28,13 +28,13 @@ public class Player : MonoBehaviour {
 
 		if (Input.GetKey (KeyCode.LeftControl) || Input.GetKey (KeyCode.RightControl))
 		{
-			transform.position += transform.forward * (normalMoveSpeed * slowMoveFactor) * Input.GetAxis("Vertical") * Time.deltaTime;
-			transform.position += transform.right * (normalMoveSpeed * slowMoveFactor) * Input.GetAxis("Horizontal") * Time.deltaTime;
+			transform.position += new Vector3(transform.forward.x * (normalMoveSpeed * slowMoveFactor) * Input.GetAxis("Vertical") * Time.deltaTime, 0, transform.forward.z * (normalMoveSpeed * slowMoveFactor) * Input.GetAxis("Vertical") * Time.deltaTime);
+			transform.position += new Vector3(transform.right.x * (normalMoveSpeed * slowMoveFactor) * Input.GetAxis("Horizontal") * Time.deltaTime, 0, transform.right.z * (normalMoveSpeed * slowMoveFactor) * Input.GetAxis("Horizontal") * Time.deltaTime);
 		}
 		else
 		{
-			transform.position += transform.forward * normalMoveSpeed * Input.GetAxis("Vertical") * Time.deltaTime;
-			transform.position += transform.right * normalMoveSpeed * Input.GetAxis("Horizontal") * Time.deltaTime;
+			transform.position += new Vector3(transform.forward.x * normalMoveSpeed * Input.GetAxis("Vertical") * Time.deltaTime, 0, transform.forward.z * normalMoveSpeed * Input.GetAxis("Vertical") * Time.deltaTime);
+			transform.position += new Vector3(transform.right.x * normalMoveSpeed * Input.GetAxis("Horizontal") * Time.deltaTime, 0, transform.right.z * normalMoveSpeed * Input.GetAxis("Horizontal") * Time.deltaTime);
 		}
 
 		if (Input.GetKeyDown (KeyCode.End))

@@ -17,6 +17,7 @@ public class Room : MonoBehaviour {
 	public GameObject target1;
 	public GameObject tree;
 
+
 	void Start () {
 		Time.timeScale = 1;
 		timeLeft = totalTime;
@@ -61,8 +62,8 @@ public class Room : MonoBehaviour {
 
 		if (timeLeft <= 0) {
 			GUI.Label (new Rect (Screen.width / 2 - 250, Screen.height / 2 - 50, 10, 10), "Game Over!", style2);
-			GUI.Label (new Rect (Screen.width / 2 - 400, Screen.height / 2+50, 10, 10), "Press Return to restart", style2);
-			GUI.Label (new Rect (Screen.width / 2 - 400, Screen.height / 2+50, 10, 10), "Press Escape to quit", style2);
+			GUI.Label (new Rect (Screen.width / 4 + 100, Screen.height / 2+50, 10, 10), "Press Return to restart", style2);
+			GUI.Label (new Rect (Screen.width / 3 -30, Screen.height / 2+150, 10, 10), "Press Escape to quit", style2);
 			if (Input.GetKeyUp(KeyCode.Return)) {
 				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 			}
