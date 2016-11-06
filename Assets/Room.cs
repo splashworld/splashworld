@@ -32,7 +32,7 @@ public class Room : MonoBehaviour {
 		go = false;
 
 		style2 = new GUIStyle ();
-		style2.fontSize = 100;
+		style2.fontSize = 80;
 		style2.alignment = TextAnchor.UpperCenter;
 
 		style3 = new GUIStyle();
@@ -40,7 +40,7 @@ public class Room : MonoBehaviour {
 		style3.alignment = TextAnchor.UpperCenter;
 
 		style4 = new GUIStyle();
-		style4.fontSize = 200;
+		style4.fontSize = 160;
 		style4.alignment = TextAnchor.UpperCenter;
 
 		initTargets ();
@@ -108,10 +108,9 @@ public class Room : MonoBehaviour {
 			float x = Random.Range (min, max);
 			float z = Random.Range (min, max);
 
-			Instantiate(tree);
-			tree.transform.position = new Vector3 (x, 0, z);
-			tree.gameObject.GetComponent<Tree> ().r = this;
-			tree.gameObject.GetComponent<Tree> ().init ();
+			GameObject spawnedTree = (GameObject)Instantiate(tree, new Vector3 (x, 0, z), Quaternion.identity);
+			spawnedTree.GetComponent<Tree> ().r = this;
+			spawnedTree.GetComponent<Tree> ().init ();
 		}
 	}
 }
