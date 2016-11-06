@@ -1,10 +1,12 @@
 fileFormatVersion: 2
 guid: 19addead8e6324b38a7277c40583c02c
-timeCreated: 1478395786
+timeCreated: 1478402573
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - r: {instanceID: 0}
+  - Apple: {fileID: 1000012436246262, guid: b4a58af8c639d4c8884fbbef7eaeaac6, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
